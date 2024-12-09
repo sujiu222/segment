@@ -4,13 +4,10 @@
   </video>
   <div class="video-content">
     <h1>
-      Segment Anything Model (SAM): a new AI model from Meta AI that can "cut
-      out" any object, in any image, with a single click
+      GeoCamNet: An Extremely Light Carbonate Classification Model Distilled
+      from An Extremely Deep ResNet101 Model
     </h1>
-    <h3>
-      SAM is a promptable segmentation system with zero-shot generalization to
-      unfamiliar objects and images, without the need for additional training.
-    </h3>
+    <h3></h3>
 
     <a href="#">
       <el-button :icon="Search" size="large" circle />
@@ -19,15 +16,48 @@
   </div>
   <div class="content">
     <div class="container">
-      <h1 class="main-title">SAM uses a variety of input prompts</h1>
+      <h1 class="main-title">Introduction</h1>
       <p class="sub-title">
-        Prompts specifying what to segment in an image allow for a wide range of
-        segmentation tasks without the need for additional training.
+        Our main tasks so far are to train a microscopic carbonate images
+        classification model on a extremely large image datasets (Fig. 1). The
+        datasets include over 10K+ high-resolution optical images. The images
+        are mainly from practical hydrocarbon exploration projects in Sichuan
+        basin. The datasets is named as Carbonate-Sichuan-170G from the location
+        and volume of the datasets. 22 types of carbonate frameworks are
+        carfully divided.
       </p>
     </div>
   </div>
   <div class="three_video">
     <div class="div_video_span">
+      <img src="/heatmap.gif" style="width: 600px" alt="" />
+
+      <span>Fig 1. GIF performance of the model</span>
+    </div>
+  </div>
+  <div class="three_video">
+    <div class="div_video_span">
+      <span style="display: block; width: 800px"
+        >After training by a ResNet101 (parameters can be seen in Table 1, net
+        framework can be seen in Fig. 2a), the .pth file to extract the
+        corresponding heatmaps (CAM) on a lighter datasets, from Qi Z., Hou M.,
+        Xu S., et al., A microscopic image dataset of Sinian carbonate from
+        Dengying Formation on the northwestern margin of Upper Yangtze. Science
+        Data Bank, 2020. (2020-07-31). DOI: 10.11922/sciencedb.j00001.00105.,
+        shorten as "MidDynuy". The pre-trained ResNet101 took a role as a
+        Teacher Net and distilled a light Student Net in MidDynuy (Fig. 3-4).
+        The Student Net was a less than 800k ultra-lightweight model (original
+        framework of MobileNetV3-Small can be seen in Fig. 2b; improved
+        framework of MobileNetV3-Small can be seen in Fig. 3a; Details of
+        improvements are displayed in Fig.3c-d). The 800k ultra-lightweight
+        model adapted the MobileNetV3-Small framework.</span
+      >
+      <img src="/resnet.jpg" style="width: 800px" alt="" />
+      <span>Table 1 Parameters of ResNets</span>
+    </div>
+  </div>
+  <div class="three_video">
+    <!-- <div class="div_video_span">
       <video muted autoplay loop>
         <source src="/section-1.1a.mp4" />
       </video>
@@ -44,9 +74,78 @@
         <source src="/section-1.1c.mp4" />
       </video>
       <span>Generate multiple valid masks for ambiguous prompts.</span>
+    </div> -->
+
+    <div class="div_video_span">
+      <img src="/RandM.jpg" alt="" />
+      <span style="display: block; width: 650px"
+        >Fig 2. Original Model Frameworks of (a) ResNet101 and (b)
+        MobileNetV3-Small</span
+      >
+    </div>
+
+    <div class="div_video_span">
+      <img src="/imn.jpg" alt="" />
+      <span style="display: block; width: 650px"
+        >Fig 3. Frameworks improved MobileNetV3-Small; (a) Total framework; (b)
+        Illustration of one bottleneck; (c) Flow of bottlenecks; (d)
+        Illustration of the skip; (e) Flow of contran necks</span
+      >
+    </div>
+  </div>
+
+  <div class="three_video">
+    <div class="div_video_span">
+      <span style="display: block; width: 800px"
+        >To investigating the potential deploying scenario, in addition to CAM,
+        other image processing such as glcm enhancement was used in the final
+        rendering.</span
+      >
+      <img src="/workflow.jpg" style="width: 800px" alt="" />
+      <span>Fig 4. Workflow of this research</span>
+    </div>
+  </div>
+
+  <div class="three_video">
+    <div class="div_video_span">
+      <h2>The effect and comparison of generating heatmaps are shown below</h2>
+      <span style="display: block; width: 800px; margin-top: 40px"
+        >The following shows the original image to CAM heatmap to the GLCM
+        enhanced CAM heatmap</span
+      >
+    </div>
+  </div>
+
+  <div class="three_video">
+    <div class="div_video_span">
+      <img src="/img1.png" style="width: 350px" alt="" />
+    </div>
+    <div class="div_video_span">
+      <img src="/hot1.png" style="width: 350px" alt="" />
+    </div>
+    <div class="div_video_span">
+      <img src="/heat1.png" style="width: 350px" alt="" />
+    </div>
+  </div>
+  <div class="three_video">
+    <div class="div_video_span">
+      <span style="width: 800px; margin: 40px 0 20px 0; text-align: center"
+        >Here are some more examples</span
+      >
+      <img src="/imgExample.png" style="width: 950px; margin: 0" alt="" />
+      <img src="/heatExample.png" style="width: 950px; margin: 0" alt="" />
+    </div>
+  </div>
+  <div class="three_video">
+    <div class="div_video_span">
+      <span style="width: 800px; margin: 40px 0 20px 0; text-align: center"
+        >Here's how to works in camera</span
+      >
+      <img src="/HeatMap_camera.gif " style="width: 550px; margin: 0" alt="" />
     </div>
   </div>
   <div class="blank"></div>
+
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2024 Your Company. All rights reserved.</p>
@@ -101,7 +200,7 @@ import { Search } from "@element-plus/icons-vue";
   }
 }
 .content {
-  margin-top: calc(100vh);
+  margin-top: calc(100vh + 40px);
   width: 100%;
   box-sizing: border-box;
 }
@@ -131,6 +230,10 @@ import { Search } from "@element-plus/icons-vue";
   margin-top: 30px;
   video {
     width: 350px;
+    margin: 25px;
+  }
+  img {
+    width: 450px;
     margin: 25px;
   }
   .div_video_span {
