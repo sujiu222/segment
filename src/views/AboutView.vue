@@ -144,6 +144,140 @@
       <img src="/HeatMap_camera.gif " style="width: 550px; margin: 0" alt="" />
     </div>
   </div>
+
+  <div class="Frequently" style="margin-top: 150px">
+    <div class="Frequently-content">
+      <div>Frequently asked questions</div>
+    </div>
+  </div>
+  <div class="Frequently">
+    <div class="Frequently-content">
+      <div class="Qustions">
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="Qustions">
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+        <div class="Qustion">
+          <div class="char_button">
+            What type of prompts are supported?
+            <img
+              class="add_button"
+              src="../assets/add.svg"
+              alt=""
+              style="display: block"
+            />
+          </div>
+          <div class="answer" style="display: none">
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+            <img class="del_button" src="../assets/delete.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="blank"></div>
 
   <footer class="footer">
@@ -160,6 +294,29 @@
 
 <script setup>
 import { Search } from "@element-plus/icons-vue";
+import { onMounted, ref } from "vue";
+onMounted(() => {
+  const add_buttons = document.querySelectorAll(".add_button");
+  const del_buttons = document.querySelectorAll(".del_button");
+  const answers = document.querySelectorAll(".answer");
+  for (const add_button of add_buttons) {
+    add_button.addEventListener("click", function () {
+      const t = add_button.parentNode;
+      t.children[0].style.display = "none";
+      const ques = t.parentNode;
+      console.log(ques);
+      ques.children[1].style.display = "flex";
+    });
+  }
+  for (const del_button of del_buttons) {
+    del_button.addEventListener("click", function () {
+      const answer = del_button.parentNode;
+      answer.style.display = "none";
+      const ques = answer.parentNode;
+      ques.children[0].children[0].style.display = "block";
+    });
+  }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -279,5 +436,58 @@ import { Search } from "@element-plus/icons-vue";
 }
 .blank {
   height: 1000px;
+}
+.Frequently {
+  // margin-top: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  margin-bottom: 2vh;
+  .Frequently-content {
+    display: flex;
+    justify-content: space-between;
+    width: 85vw;
+  }
+}
+.Qustions {
+  display: flex;
+  width: 45%;
+  flex-direction: column;
+  // justify-content: space-between;
+  .Qustion {
+    // background: #000;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 0;
+    border-top-width: 1px;
+    border-top-color: rgb(229, 231, 235);
+    border-top-style: solid;
+    font-size: 1.3rem;
+    color: rgb(90, 80, 80);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    img {
+      width: 2.5rem;
+    }
+    .answer {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      ul {
+        margin-top: 1rem;
+        max-width: 60%;
+        list-style-position: inside;
+      }
+    }
+    .char_button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 </style>

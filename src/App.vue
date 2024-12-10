@@ -5,11 +5,22 @@
     mode="horizontal"
     :router="true"
   >
-    <el-menu-item index="/" style="font-size: 1em">home</el-menu-item>
-    <el-menu-item index="segment" style="font-size: 1em">classify</el-menu-item>
+    <el-menu-item index="/" style="font-size: 1em">Home</el-menu-item>
+    <el-menu-item index="/segment" style="font-size: 1em"
+      >Classify</el-menu-item
+    >
+    <el-menu-item index="/demo" style="font-size: 1em">Demo</el-menu-item>
+    <el-menu-item index="/dataset" style="font-size: 1em">Dataset</el-menu-item>
+    <el-menu-item index="/blog" style="font-size: 1em">Blog</el-menu-item>
+    <el-menu-item index="/paper" style="font-size: 1em">Paper</el-menu-item>
     <a
       href="https://github.com/ai4geology/CamNet"
-      style="display: flex; align-items: center; margin-right: 40px"
+      style="
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        margin-left: 20px;
+      "
       ><img src="/Github.svg" alt=""
     /></a>
   </el-menu>
@@ -38,7 +49,7 @@ const activeIndex = ref("/");
   display: flex;
   justify-content: end;
   .el-menu-item {
-    margin-right: 40px;
+    margin-right: 5px;
   }
 }
 </style>
