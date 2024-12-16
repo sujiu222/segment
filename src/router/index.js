@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import AboutView from "../views/AboutView.vue";
-import Segment from "../views/Segment.vue";
+import Segment_2 from "../views/Segment_2.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -11,7 +11,7 @@ const router = createRouter({
     },
     {
       path: "/segment",
-      component: Segment,
+      component: Segment_2,
     },
   ],
 });
