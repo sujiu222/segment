@@ -82,6 +82,13 @@
         </div>
     </div>
     <input type="file" ref="fileInput" @change="handleFileChange" accept="image/*" style="display: none" />
+    <el-dialog v-model="isUploading" title="Extracting an embedding for the image..." width="400px" :close-on-click-modal="false" :show-close="false" align-center class="upload-dialog">
+        <div style="text-align: center">
+            <img :src="uploadIcon" style="width: 50px; margin-bottom: 15px" />
+            <el-progress :percentage="progress" :show-text="false"></el-progress>
+            <p style="margin-top: 10px">Extracting an embedding for the image...</p>
+        </div>
+    </el-dialog>
 </template>
 
 <script setup>
@@ -111,6 +118,10 @@ onMounted(() => {
     })
 })
 const img = new Image()
+
+const isUploading = ref(false)
+const progress = ref(0)
+
 onMounted(() => {
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext("2d")
@@ -171,7 +182,11 @@ const triggerUpload = () => {
 const handleFileChange = (event) => {
     const file = event.target.files[0]
     if (file) {
+        isUploading.value = true
+        progress.value = 0
+
         const reader = new FileReader()
+
         // 读取文件并生成预览 URL
         reader.onload = (e) => {
             previewImage.value = e.target.result // 将预览的URL赋值给图片
@@ -183,6 +198,14 @@ const handleFileChange = (event) => {
                 canvas.height = img.height
                 ctx.drawImage(img, 0, 0, img.width, img.height)
             }
+            const interval = setInterval(() => {
+                if (progress.value >= 100) {
+                    clearInterval(interval)
+                    isUploading.value = false
+                } else {
+                    progress.value += 10
+                }
+            }, 300)
         }
         reader.readAsDataURL(file)
     }
@@ -190,6 +213,14 @@ const handleFileChange = (event) => {
 </script>
 
 <style lang="scss" scoped>
+.el-progress {
+    margin-top: 10px;
+}
+.upload-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #img_Upload:active {
     color: transparent;
 }
