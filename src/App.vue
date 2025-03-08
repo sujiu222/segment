@@ -6,14 +6,26 @@
         <el-menu-item index="/dataset" style="font-size: 1em">Dataset</el-menu-item>
         <el-menu-item index="/blog" style="font-size: 1em">Blog</el-menu-item>
         <el-menu-item index="/paper" style="font-size: 1em">Paper</el-menu-item>
-        <a href="https://github.com/ai4geology/CamNet" style="display: flex; align-items: center; margin-right: 20px; margin-left: 20px"><img src="/Github.svg" alt="" /></a>
+        <a href="https://github.com/ai4geology/CamNet" style="display: flex; align-items: center; margin-right: 20px; margin-left: 20px">
+            <img src="/Github.svg" alt="" />
+        </a>
     </el-menu>
     <RouterView />
 </template>
+
 <script setup>
-import { ref } from "vue"
-const activeIndex = ref("/")
+import { ref, watch } from "vue"
+import { useRoute } from "vue-router"
+
+const route = useRoute()
+const activeIndex = ref(route.path)
+
+// 监听路由变化，动态更新activeIndex
+watch(route, (newRoute) => {
+    activeIndex.value = newRoute.path
+})
 </script>
+
 <style>
 * {
     padding: 0;
