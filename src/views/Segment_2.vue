@@ -75,7 +75,7 @@
             </el-card>
         </div>
         <div class="center">
-            <canvas id="canvas" style="border: 1px solid #000; width: 100%; height: 100%"></canvas>
+            <canvas id="canvas" style="width: 100%"></canvas>
         </div>
         <div class="right">
             <el-card style="height: 100%">图表</el-card>
