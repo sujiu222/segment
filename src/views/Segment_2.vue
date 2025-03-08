@@ -92,6 +92,7 @@
 </template>
 
 <script setup>
+import { postImg } from "@/api"
 import { ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
 // 图片预览路径
@@ -168,6 +169,8 @@ onMounted(() => {
 const router = useRouter()
 const previewImage = ref("")
 const img_Upload = ref("")
+const pid = ref("")
+
 // 引用隐藏的文件上传 input
 const fileInput = ref(null)
 
@@ -181,12 +184,14 @@ const triggerUpload = () => {
 // 处理文件上传和预览
 const handleFileChange = (event) => {
     const file = event.target.files[0]
+
+    pid.value = postImg(file)
+
     if (file) {
         isUploading.value = true
         progress.value = 0
 
         const reader = new FileReader()
-
         // 读取文件并生成预览 URL
         reader.onload = (e) => {
             previewImage.value = e.target.result // 将预览的URL赋值给图片

@@ -15,8 +15,8 @@ export function getImgTotal() {
  * GET http://127.0.0.1:8000/img/{pic_id}
  * 返回类型： 文件
  */
-export function getIdImage(pic_id) {
-    fetch(`http://127.0.0.1:8000/img/${pic_id}`)
+export function getIdImage(pic_id, tab = "ori") {
+    fetch(`http://127.0.0.1:8000/api/img/${pic_id}?tab=${tab}`)
         .then((response) => response.blob())
         .then((blob) => console.log(blob))
         .catch((error) => console.error("请求失败:", error))
@@ -30,12 +30,17 @@ export function getIdImage(pic_id) {
  */
 export function postImg(imageFile) {
     const formData = new FormData()
-    formData.append("img", imageFile)
-    fetch("http://127.0.0.1:8000/upload/", {
+    formData.append("file", imageFile)
+    fetch("http://127.0.0.1:8000/api/upload/", {
         method: "POST",
         body: formData,
     })
-        .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then(async (response) => {
+            const res = await response.json()
+            if (response.message == "Uploaded Successfully") {
+                return res.pid
+            }
+            return null
+        })
         .catch((error) => console.error("请求失败:", error))
 }
