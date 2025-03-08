@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <div class="left">
-            <el-card class="left-card" style="height: 100%">
+            <el-card class="left-card">
                 <h2>Tools</h2>
                 <el-card>
                     <div style="display: flex; font-size: 1rem; justify-content: space-between; width: 100%">
@@ -21,7 +21,7 @@
                         <b>Model</b>
                     </div>
                 </el-card>
-                <el-card style="height: 250px" class="three_img_card">
+                <el-card class="three_img_card">
                     <div class="upload_img">
                         <img src="../assets/tupianfeilei.svg" style="width: 35px; margin-right: 5%" alt="" />
                         <b>Pane</b>
@@ -49,12 +49,12 @@
                             <p>Detect</p>
                             <p>Segment</p>
                         </div>
-                        <div class="three_img" style="margin-top: 10px; background: #f0f8ff; border-radius: 5%; box-sizing: border-box; padding: 5px">
+                        <div class="three_img" style="margin-top: 10px; background: #edeef1; border-radius: 8px; box-sizing: border-box; padding: 10px">
                             <p>Data</p>
                             <p>Analysis</p>
                             <p>Charts</p>
                         </div>
-                        <div class="three_img" style="margin-top: 10px; background: #f0f8ff; border-radius: 5%; box-sizing: border-box; padding: 5px; justify-content: start">
+                        <div class="three_img" style="margin-top: 10px; background: #edeef1; border-radius: 8px; box-sizing: border-box; padding: 10px; justify-content: start">
                             <img src="../assets/器械.svg" style="width: 25px" alt="" />
                             <p>Cut out object</p>
                         </div>
