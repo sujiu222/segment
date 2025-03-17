@@ -21,6 +21,7 @@ const click = (index) => {
 div {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
   img {
     width: 100%;
   }

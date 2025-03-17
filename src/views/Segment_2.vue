@@ -62,7 +62,7 @@
                     hue-rotate(150deg) brightness(16%) contrast(94%);
                 "
                 class="act-Detect"
-                @click="Detech()"
+                @click="Detech"
               />
               <img
                 src="../assets/分割.svg"
@@ -146,8 +146,28 @@
     </div>
     <div class="right">
       <el-card style="height: 100%" id="right">
-        <p>矿层复合率: 6.703004190799626</p>
-        <p>岩层丰富度: 2.2958106994628906</p>
+        <div
+          style="
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          "
+        >
+          <span>矿层复合率:</span>
+          <span>6.703004190799626:</span>
+          <span>岩层丰富度:</span>
+          <span>2.2958106994628906:</span>
+        </div>
+        <div
+          id="Classify_box"
+          style="position: absolute; left: 0; right: 0; top: 50%; bottom: 0"
+        ></div>
       </el-card>
     </div>
   </div>
@@ -255,8 +275,8 @@ const cutOutObject = () => {
 
   if (isCutOutObject.value) {
     isCutOutObject.value = false;
-    const div = document.querySelector(".right .el-card__body");
-    div.removeChild(div.lastChild);
+    // const div = document.querySelector(".right .el-card__body");
+    // div.removeChild(div.lastChild);
     img_Detech.value.src = "";
     Detech();
   } else {
@@ -275,17 +295,17 @@ const cutOutObject = () => {
     const img = new Image();
     isCutOutObject.value = true;
 
-    img.src = `/cut/${index}.png`;
-    const div = document.querySelector(".right .el-card__body");
+    // img.src = `/cut/${index}.png`;
+    // const div = document.querySelector(".right .el-card__body");
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    img.onload = () => {
-      div.appendChild(canvas);
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-    };
+    // const canvas = document.createElement("canvas");
+    // const ctx = canvas.getContext("2d");
+    // img.onload = () => {
+    //   div.appendChild(canvas);
+    //   canvas.width = img.width;
+    //   canvas.height = img.height;
+    //   ctx.drawImage(img, 0, 0, img.width, img.height);
+    // };
   }
 };
 
@@ -480,19 +500,52 @@ const endDrawing = () => {
   isDrawing = false;
 };
 
+const isCaptureScreenshot = ref(false);
+
 // 截图功能
 const captureScreenshot = () => {
-  const canvas = document.getElementById("canvas");
+  if (isCaptureScreenshot.value) {
+    const div = document.querySelector("#Classify_box");
+    div.removeChild(div.lastChild);
+    isCaptureScreenshot.value = false;
+  } else {
+    isCaptureScreenshot.value = true;
+    const img = new Image();
+    img.src = `/cut/${index}.png`;
+    const div = document.querySelector("#Classify_box");
 
-  // 创建临时链接
-  const link = document.createElement("a");
-  link.download = `capture_${Date.now()}.png`;
-  link.href = canvas.toDataURL();
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.addEventListener("click", () => {
+      previewImage.value = img.src;
+      // console.log(123213, img.src.endsWith(`/ori/${index}.jpg`), img.src);
 
-  // 触发下载
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+    });
+
+    img.onload = () => {
+      div.appendChild(canvas);
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+    };
+  }
+
+  // const canvas = document.getElementById("canvas");
+
+  // // 创建临时链接
+  // const link = document.createElement("a");
+  // link.download = `capture_${Date.now()}.png`;
+  // link.href = canvas.toDataURL();
+
+  // // 触发下载
+  // document.body.appendChild(link);
+  // link.click();
+  // document.body.removeChild(link);
 };
 const router = useRouter();
 const previewImage = ref("");
