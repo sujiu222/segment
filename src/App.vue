@@ -9,6 +9,9 @@
     <el-menu-item index="/segment" style="font-size: 1em"
       >Classify</el-menu-item
     >
+    <el-menu-item index="/generate" style="font-size: 1em"
+      >generate</el-menu-item
+    >
     <el-menu-item index="/demo" style="font-size: 1em">Demo</el-menu-item>
     <el-menu-item index="/dataset" style="font-size: 1em">Dataset</el-menu-item>
     <el-menu-item index="/blog" style="font-size: 1em">Blog</el-menu-item>
@@ -37,8 +40,6 @@ const activeIndex = ref(route.path);
 
 // 监听路由变化，动态更新activeIndex
 watch(route, (newRoute) => {
-  if (activeIndex.value === "/demo" && newRoute.path === "/segment") {
-  }
   activeIndex.value = newRoute.path;
 });
 </script>

@@ -518,8 +518,6 @@ const captureScreenshot = () => {
     const ctx = canvas.getContext("2d");
     canvas.addEventListener("click", () => {
       previewImage.value = img.src;
-      // console.log(123213, img.src.endsWith(`/ori/${index}.jpg`), img.src);
-
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
       canvas.width = img.width;
