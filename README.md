@@ -27,3 +27,6 @@ npm run dev
 ```sh
 npm run build
 ```
+![无标题视频——使用Clipchamp制作](https://github.com/user-attachments/assets/fdd8d758-02bb-4dc6-bc03-05ba5656380f)
+![无标题视频——使用Clipchamp制作 (1)](https://github.com/user-attachments/assets/dc9b182b-4399-443e-a837-2dba94056637)
+![无标题视频——使用Clipchamp制作 (2)](https://github.com/user-attachments/assets/a56375f0-8cb0-4461-a7b9-37c234cb4f19)
